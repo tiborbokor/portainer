@@ -4,5 +4,5 @@ import {
 } from '@@/datatables/types';
 
 export interface TableSettings
-  extends SortableTableSettings,
-    PaginationTableSettings {}
+  extends Omit<SortableTableSettings, 'setSortBy'>,
+    Omit<PaginationTableSettings, 'setPageSize'> {}

@@ -5,7 +5,7 @@ import { Icon } from '@/react/components/Icon';
 import { useTableContext } from './TableContainer';
 
 interface Props {
-  icon: string;
+  icon?: string;
   label: string;
   featherIcon?: boolean;
 }
@@ -21,8 +21,9 @@ export function TableTitle({
   return (
     <div className="toolBar">
       <div className="toolBarTitle">
-        <Icon icon={icon} feather={featherIcon} className="space-right" />
-
+        {icon && (
+          <Icon icon={icon} feather={featherIcon} className="space-right" />
+        )}
         {label}
       </div>
       {children}
