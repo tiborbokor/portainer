@@ -345,6 +345,10 @@ type (
 		// Whether the device has been trusted or not by the user
 		UserTrusted bool
 
+		Agent struct {
+			Version string `example:"1.0.0"`
+		}
+
 		// Deprecated fields
 		// Deprecated in DBVersion == 4
 		TLS           bool   `json:"TLS,omitempty"`
