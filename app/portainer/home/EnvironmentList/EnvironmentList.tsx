@@ -126,10 +126,7 @@ export function EnvironmentList({ onClickItem, onRefresh }: Props) {
 
   const groupsQuery = useGroups();
 
-  const environmentsQueryParams: Omit<
-    EnvironmentsQueryParams,
-    'agentVersions'
-  > = {
+  const environmentsQueryParams: EnvironmentsQueryParams = {
     types: platformType,
     search: debouncedTextFilter,
     status: statusFilter,
@@ -137,6 +134,7 @@ export function EnvironmentList({ onClickItem, onRefresh }: Props) {
     groupIds: groupFilter,
     edgeDeviceFilter: 'none',
     tagsPartialMatch: true,
+    agentVersions: agentVersions.map((a) => a.value),
   };
 
   const { isLoading, environments, totalCount, totalAvailable } =
@@ -146,13 +144,12 @@ export function EnvironmentList({ onClickItem, onRefresh }: Props) {
         pageLimit,
         sort: sortByFilter,
         order: sortByDescending ? 'desc' : 'asc',
-        agentVersions: agentVersions.map((a) => a.value),
         ...environmentsQueryParams,
       },
       refetchIfAnyOffline
     );
 
-  const agentVersionsQuery = useAgentVersionsList(environmentsQueryParams);
+  const agentVersionsQuery = useAgentVersionsList();
 
   useEffect(() => {
     setPage(1);
@@ -318,14 +315,9 @@ export function EnvironmentList({ onClickItem, onRefresh }: Props) {
                   <KubeconfigButton
                     environments={environments}
                     envQueryParams={{
-                      types: platformType,
-                      search: debouncedTextFilter,
-                      status: statusFilter,
-                      tagIds: tagFilter?.length ? tagFilter : undefined,
-                      groupIds: groupFilter,
+                      ...environmentsQueryParams,
                       sort: sortByFilter,
                       order: sortByDescending ? 'desc' : 'asc',
-                      edgeDeviceFilter: 'none',
                     }}
                   />
                 </div>
