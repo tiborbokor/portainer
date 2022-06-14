@@ -1,18 +1,19 @@
 import { useState } from 'react';
 
 import { Environment } from '@/portainer/environments/types';
-import { EnvironmentsQueryParams } from '@/portainer/environments/environment.service/index';
 import { isKubernetesEnvironment } from '@/portainer/environments/utils';
 import { trackEvent } from '@/angulartics.matomo/analytics-services';
+import { Query } from '@/portainer/environments/queries/useEnvironmentList';
 
 import { Button } from '@@/buttons';
 
 import { KubeconfigPrompt } from './KubeconfigPrompt';
+
 import '@reach/dialog/styles.css';
 
 export interface KubeconfigButtonProps {
   environments: Environment[];
-  envQueryParams: EnvironmentsQueryParams;
+  envQueryParams: Query;
 }
 export function KubeconfigButton({
   environments,
