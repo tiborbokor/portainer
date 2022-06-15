@@ -55,6 +55,7 @@ export interface KubernetesSettings {
 }
 
 export type Environment = {
+  Agent: { Version: string };
   Id: EnvironmentId;
   Type: EnvironmentType;
   TagIds: TagId[];
@@ -74,6 +75,7 @@ export type Environment = {
   UserTrusted: boolean;
   AMTDeviceGUID?: string;
 };
+
 /**
  * TS reference of endpoint_create.go#EndpointCreationType iota
  */

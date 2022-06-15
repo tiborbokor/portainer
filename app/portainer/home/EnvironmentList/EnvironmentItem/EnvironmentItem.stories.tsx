@@ -71,5 +71,6 @@ function mockEnvironment(type: EnvironmentType): Environment {
     URL: 'url',
     UserTrusted: false,
     EdgeKey: '',
+    Agent: { Version: '' },
   };
 }

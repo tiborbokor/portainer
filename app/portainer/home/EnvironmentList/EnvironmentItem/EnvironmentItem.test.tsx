@@ -24,6 +24,7 @@ test('loads component', async () => {
     Id: 3,
     UserTrusted: false,
     EdgeKey: '',
+    Agent: { Version: '' },
   };
   const { getByText } = renderComponent(env);
 
@@ -46,6 +47,7 @@ test('shows group name', async () => {
     Id: 3,
     UserTrusted: false,
     EdgeKey: '',
+    Agent: { Version: '' },
   };
 
   const { findByText } = renderComponent(env, { Name: groupName });
