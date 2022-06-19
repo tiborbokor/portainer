@@ -1,8 +1,10 @@
 import angular from 'angular';
 
-import { ItemView } from '@/react/docker/networks/ItemView';
+import { ItemView as NetworksItemView } from '@/react/docker/networks/ItemView';
 import { r2a } from '@/react-tools/react2angular';
 
+import { containersModule } from './containers';
+
 export const viewsModule = angular
-  .module('portainer.docker.react.views', [])
-  .component('networkDetailsView', r2a(ItemView, [])).name;
+  .module('portainer.docker.react.views', [containersModule])
+  .component('networkDetailsView', r2a(NetworksItemView, [])).name;

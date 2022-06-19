@@ -1,8 +1,7 @@
 import clsx from 'clsx';
 
-import { DockerContainerStatus } from '@/react/docker/containers/types';
 import { Authorized } from '@/portainer/hooks/useUser';
-import { react2angular } from '@/react-tools/react2angular';
+import { ContainerStatus } from '@/react/docker/containers/types';
 
 import { Link } from '@@/Link';
 
@@ -21,7 +20,7 @@ interface Props {
   containerId?: string;
   nodeName: string;
   state: QuickActionsState;
-  status: DockerContainerStatus;
+  status: ContainerStatus;
 }
 
 export function ContainerQuickActions({
@@ -35,9 +34,12 @@ export function ContainerQuickActions({
     return <TaskQuickActions taskId={taskId} state={state} />;
   }
 
-  const isActive = ['starting', 'running', 'healthy', 'unhealthy'].includes(
-    status
-  );
+  const isActive = [
+    ContainerStatus.Starting,
+    ContainerStatus.Running,
+    ContainerStatus.Healthy,
+    ContainerStatus.Unhealthy,
+  ].includes(status);
 
   return (
     <div className={clsx('space-x-1', styles.root)}>
@@ -134,8 +136,3 @@ function TaskQuickActions({ taskId, state }: TaskProps) {
     </div>
   );
 }
-
-export const ContainerQuickActionsAngular = react2angular(
-  ContainerQuickActions,
-  ['taskId', 'containerId', 'nodeName', 'state', 'status']
-);
