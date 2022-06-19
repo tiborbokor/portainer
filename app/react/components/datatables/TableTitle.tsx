@@ -2,8 +2,6 @@ import { PropsWithChildren } from 'react';
 
 import { Icon } from '@/react/components/Icon';
 
-import { useTableContext } from './TableContainer';
-
 interface Props {
   icon: string;
   label: string;
@@ -16,8 +14,6 @@ export function TableTitle({
   label,
   children,
 }: PropsWithChildren<Props>) {
-  useTableContext();
-
   return (
     <div className="toolBar">
       <div className="toolBarTitle">

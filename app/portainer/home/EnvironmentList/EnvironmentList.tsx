@@ -8,7 +8,7 @@ import {
   EnvironmentStatus,
 } from '@/portainer/environments/types';
 import { EnvironmentGroupId } from '@/portainer/environment-groups/types';
-import { useIsAdmin } from '@/portainer/hooks/useUser';
+import { useUser } from '@/portainer/hooks/useUser';
 import {
   HomepageFilter,
   useHomePageFilter,
@@ -71,7 +71,7 @@ const allEnvironmentType = [
 ];
 
 export function EnvironmentList({ onClickItem, onRefresh }: Props) {
-  const isAdmin = useIsAdmin();
+  const { isAdmin } = useUser();
 
   const [platformType, setPlatformType] = useHomePageFilter(
     'platformType',

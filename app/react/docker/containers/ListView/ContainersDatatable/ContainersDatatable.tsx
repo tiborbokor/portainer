@@ -50,7 +50,7 @@ export interface ContainerTableProps {
   dataset: DockerContainer[];
   onRefresh?(): Promise<void>;
   isHostColumnVisible: boolean;
-  tableKey?: string;
+  tableKey: string;
 }
 
 export function ContainersDatatable({
@@ -58,10 +58,11 @@ export function ContainersDatatable({
   dataset,
   onRefresh,
   isHostColumnVisible,
+  tableKey,
 }: ContainerTableProps) {
   const { settings, setTableSettings } =
     useTableSettings<ContainersTableSettings>();
-  const [searchBarValue, setSearchBarValue] = useSearchBarState('containers');
+  const [searchBarValue, setSearchBarValue] = useSearchBarState(tableKey);
 
   const columns = useColumns();
 

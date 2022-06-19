@@ -13,7 +13,7 @@ import {
   isEdgeEnvironment,
 } from '@/portainer/environments/utils';
 import type { TagId } from '@/portainer/tags/types';
-import { useIsAdmin } from '@/portainer/hooks/useUser';
+import { useUser } from '@/portainer/hooks/useUser';
 import { useTags } from '@/portainer/tags/queries';
 
 import { Button } from '@@/buttons';
@@ -32,7 +32,7 @@ interface Props {
 }
 
 export function EnvironmentItem({ environment, onClick, groupName }: Props) {
-  const isAdmin = useIsAdmin();
+  const { isAdmin } = useUser();
   const isEdge = isEdgeEnvironment(environment.Type);
 
   const snapshotTime = getSnapshotTime(environment);

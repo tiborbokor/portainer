@@ -4,9 +4,10 @@ import { r2a } from '@/react-tools/react2angular';
 import { CreateAccessToken } from '@/react/portainer/account/CreateAccessTokenView';
 
 import { wizardModule } from './wizard';
+import { teamsModule } from './teams';
 
 export const viewsModule = angular
-  .module('portainer.app.react.views', [wizardModule])
+  .module('portainer.app.react.views', [wizardModule, teamsModule])
   .component(
     'createAccessToken',
     r2a(CreateAccessToken, ['onSubmit', 'onError'])

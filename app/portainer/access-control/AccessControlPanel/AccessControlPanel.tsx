@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 
 import { useUser } from '@/portainer/hooks/useUser';
 import { r2a } from '@/react-tools/react2angular';
-import { TeamMembership, Role } from '@/portainer/teams/types';
+import { TeamMembership, TeamRole } from '@/react/portainer/users/teams/types';
 import { useUserMembership } from '@/portainer/users/queries';
 
 import { Widget, WidgetBody, WidgetTitle } from '@@/Widget';
@@ -139,7 +139,7 @@ function isLeaderOfAnyRestrictedTeams(
 ) {
   return userMemberships.some(
     (membership) =>
-      membership.Role === Role.TeamLeader &&
+      membership.Role === TeamRole.Leader &&
       resourceControl.TeamAccesses.some((ta) => ta.TeamId === membership.TeamID)
   );
 }

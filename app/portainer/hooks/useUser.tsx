@@ -167,5 +167,5 @@ export function UserProvider({ children }: UserProviderProps) {
 
 export function useIsAdmin() {
   const { user } = useUser();
-  return !!user && isAdmin(user);
+  return isAdmin(user);
 }
