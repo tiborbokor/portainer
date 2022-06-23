@@ -1,12 +1,5 @@
 import { ResourceControlViewModel } from '@/portainer/access-control/models/ResourceControlViewModel';
 
-import {
-  PaginationTableSettings,
-  RefreshableTableSettings,
-  SettableColumnsTableSettings,
-  SortableTableSettings,
-} from '@@/datatables/types';
-
 import { PortainerMetadata } from '../types';
 
 export enum ContainerStatus {
@@ -23,19 +16,6 @@ export enum ContainerStatus {
 
 export type QuickAction = 'attach' | 'exec' | 'inspect' | 'logs' | 'stats';
 
-interface SettableQuickActionsTableSettings {
-  hiddenQuickActions: QuickAction[];
-}
-
-export interface ContainersTableSettings
-  extends SortableTableSettings,
-    PaginationTableSettings,
-    SettableColumnsTableSettings,
-    SettableQuickActionsTableSettings,
-    RefreshableTableSettings {
-  truncateContainerName: number;
-}
-
 export interface Port {
   host?: string;
   public: number;
@@ -45,7 +25,7 @@ export interface Port {
 export type ContainerId = string;
 
 export type DockerContainer = {
-  IsPortainer: boolean;
+  IsPortainer?: boolean;
   State: string;
   Status: ContainerStatus;
   NodeName: string;
@@ -66,9 +46,9 @@ interface EndpointIPAMConfig {
 }
 
 interface EndpointSettings {
-  IPAMConfig?: EndpointIPAMConfig;
-  Links: string[];
-  Aliases: string[];
+  IPAMConfig?: EndpointIPAMConfig | null;
+  Links: string[] | null;
+  Aliases: string[] | null;
   NetworkID: string;
   EndpointID: string;
   Gateway: string;
@@ -78,7 +58,7 @@ interface EndpointSettings {
   GlobalIPv6Address: string;
   GlobalIPv6PrefixLen: number;
   MacAddress: string;
-  DriverOpts: { [key: string]: string };
+  DriverOpts: { [key: string]: string } | null;
 }
 
 interface SummaryNetworkSettings {
@@ -119,14 +99,14 @@ enum MountType {
 }
 
 interface MountPoint {
-  Type?: MountType;
+  Type?: MountType | string;
   Name?: string;
   Source: string;
   Destination: string;
   Driver?: string;
   Mode: string;
   RW: boolean;
-  Propagation: MountPropagation;
+  Propagation: MountPropagation | string;
 }
 
 export interface DockerContainerResponse {
@@ -139,7 +119,7 @@ export interface DockerContainerResponse {
   Ports: PortResponse[];
   SizeRw?: number;
   SizeRootFs?: number;
-  Labels: { [key: string]: string };
+  Labels: Partial<Record<string, string>>;
   State: string;
   Status: string;
   HostConfig: {
@@ -148,6 +128,6 @@ export interface DockerContainerResponse {
   NetworkSettings?: SummaryNetworkSettings;
   Mounts: MountPoint[];
 
-  Portainer: PortainerMetadata;
-  IsPortainer: boolean;
+  Portainer?: PortainerMetadata;
+  IsPortainer?: boolean;
 }

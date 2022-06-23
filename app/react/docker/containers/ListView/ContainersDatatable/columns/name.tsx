@@ -2,13 +2,11 @@ import { CellProps, Column, TableInstance } from 'react-table';
 import _ from 'lodash';
 import { useSref } from '@uirouter/react';
 
-import type {
-  ContainersTableSettings,
-  DockerContainer,
-} from '@/react/docker/containers/types';
+import type { DockerContainer } from '@/react/docker/containers/types';
 
 import { useTableSettings } from '@@/datatables/useTableSettings';
 
+import { TableSettings } from '../types';
 import { useRowContext } from '../RowContext';
 
 export const name: Column<DockerContainer> = {
@@ -29,7 +27,7 @@ export function NameCell({
   value: name,
   row: { original: container },
 }: CellProps<TableInstance>) {
-  const { settings } = useTableSettings<ContainersTableSettings>();
+  const { settings } = useTableSettings<TableSettings>();
   const truncate = settings.truncateContainerName;
   const { environment } = useRowContext();
   const offlineMode = environment.Status !== 1;
