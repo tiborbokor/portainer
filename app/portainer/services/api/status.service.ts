@@ -25,10 +25,7 @@ export async function getStatus() {
   try {
     const { data } = await axios.get<StatusResponse>(buildUrl());
 
-    data.Edition =
-      process.env.PORTAINER_EDITION === 'CE'
-        ? 'Community Edition'
-        : 'Business Edition';
+    data.Edition = 'Community Edition';
 
     return data;
   } catch (error) {
