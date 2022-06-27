@@ -3,6 +3,11 @@ import { useMutation, useQueryClient } from 'react-query';
 
 import { confirmDeletionAsync } from '@/portainer/services/modal.service/confirm';
 import { usePublicSettings } from '@/portainer/settings/queries';
+import {
+  mutationOptions,
+  withError,
+  withInvalidate,
+} from '@/react-tools/react-query';
 
 import { Button } from '@@/buttons';
 import { Widget } from '@@/Widget';
@@ -17,7 +22,6 @@ interface Props {
 }
 
 export function Details({ team, memberships, isAdmin }: Props) {
-  const queryClient = useQueryClient();
   const deleteMutation = useDeleteTeam();
   const router = useRouter();
   const teamSyncQuery = usePublicSettings<boolean>(
@@ -80,22 +84,22 @@ export function Details({ team, memberships, isAdmin }: Props) {
       return;
     }
 
-    router.stateService.go('portainer.teams');
     deleteMutation.mutate(team.Id, {
       onSuccess() {
-        queryClient.invalidateQueries(['teams']);
+        router.stateService.go('portainer.teams');
       },
     });
   }
 }
 
 function useDeleteTeam() {
-  return useMutation((id: TeamId) => deleteTeam(id), {
-    meta: {
-      error: {
-        title: 'Failure',
-        message: 'Unable to delete team',
-      },
-    },
-  });
+  const queryClient = useQueryClient();
+  return useMutation(
+    (id: TeamId) => deleteTeam(id),
+
+    mutationOptions(
+      withError('Unable to delete team'),
+      withInvalidate(queryClient, [['teams']])
+    )
+  );
 }

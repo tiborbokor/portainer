@@ -8,6 +8,7 @@ import { useMemo, useState } from 'react';
 
 import { User, UserId } from '@/portainer/users/types';
 import { TeamRole } from '@/react/portainer/users/teams/types';
+import { useUser } from '@/portainer/hooks/useUser';
 
 import { PageSelector } from '@@/PaginationControls/PageSelector';
 import { Button } from '@@/buttons';
@@ -39,7 +40,7 @@ export function TeamMembersList({
   const [search, setSearch] = useState('');
   const [pageSize, setPageSize] = useState(10);
 
-  const isAdmin = true;
+  const { isAdmin } = useUser();
   const {
     getTableProps,
     getTableBodyProps,

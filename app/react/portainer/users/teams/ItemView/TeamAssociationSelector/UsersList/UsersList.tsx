@@ -7,6 +7,7 @@ import {
 import { useMemo, useState } from 'react';
 
 import { User, UserId } from '@/portainer/users/types';
+import { useUser } from '@/portainer/hooks/useUser';
 
 import { PageSelector } from '@@/PaginationControls/PageSelector';
 import { Button } from '@@/buttons';
@@ -30,7 +31,7 @@ export function UsersList({ users, onAddUsers, disabled }: Props) {
   const [search, setSearch] = useState('');
   const [pageSize, setPageSize] = useState(10);
 
-  const isAdmin = true;
+  const { isAdmin } = useUser();
   const {
     getTableProps,
     getTableBodyProps,
