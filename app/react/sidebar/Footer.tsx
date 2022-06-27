@@ -1,17 +1,16 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { DialogOverlay } from '@reach/dialog';
-import { Database, Hash, Server, Tag, Tool } from 'react-feather';
 import clsx from 'clsx';
+import { Database, Hash, Server, Tag, Tool } from 'react-feather';
+import { DialogOverlay } from '@reach/dialog';
 
 import smallLogo from '@/assets/images/logo_small.png';
 import { getStatus } from '@/portainer/services/api/status.service';
 
-import { UpdateNotification } from './UpdateNotifications';
-import styles from './Footer.module.css';
-
 import { Button } from '@@/buttons';
 
+import { UpdateNotification } from './UpdateNotifications';
+import styles from './Footer.module.css';
 import '@reach/dialog/styles.css';
 
 export function Footer() {
@@ -129,6 +128,12 @@ export function Footer() {
             onClick={() => {
               setShowBuildInfo(!showBuildInfo);
             }}
+            // Accessibility requirements for a clickable span
+            onKeyPress={() => {
+              setShowBuildInfo(!showBuildInfo);
+            }}
+            role="button"
+            tabIndex={0}
           >
             {Version}
           </span>
