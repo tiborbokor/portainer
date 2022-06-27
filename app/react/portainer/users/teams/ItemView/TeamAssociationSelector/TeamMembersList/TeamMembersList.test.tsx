@@ -1,3 +1,5 @@
+import { UserContext } from '@/portainer/hooks/useUser';
+import { UserViewModel } from '@/portainer/models/user';
 import { render } from '@/react-tools/test-utils';
 
 import { TeamMembersList } from './TeamMembersList';
@@ -9,13 +11,17 @@ test('renders correctly', () => {
 });
 
 function renderComponent() {
+  const user = new UserViewModel({ Username: 'user' });
+
   return render(
-    <TeamMembersList
-      users={[]}
-      onRemoveUsers={() => {}}
-      onUpdateRoleClick={() => {}}
-      roles={{}}
-    />
+    <UserContext.Provider value={{ user }}>
+      <TeamMembersList
+        users={[]}
+        onRemoveUsers={() => {}}
+        onUpdateRoleClick={() => {}}
+        roles={{}}
+      />
+    </UserContext.Provider>
   );
 }
 

@@ -1,3 +1,5 @@
+import { UserContext } from '@/portainer/hooks/useUser';
+import { UserViewModel } from '@/portainer/models/user';
 import { render } from '@/react-tools/test-utils';
 
 import { UsersList } from './UsersList';
@@ -9,7 +11,12 @@ test('renders correctly', () => {
 });
 
 function renderComponent() {
-  return render(<UsersList users={[]} onAddUsers={() => {}} />);
+  const user = new UserViewModel({ Username: 'user' });
+  return render(
+    <UserContext.Provider value={{ user }}>
+      <UsersList users={[]} onAddUsers={() => {}} />
+    </UserContext.Provider>
+  );
 }
 
 test.todo('when users list is empty, add all users button is disabled');
