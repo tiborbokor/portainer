@@ -24,9 +24,9 @@ interface Props {
 export function Details({ team, memberships, isAdmin }: Props) {
   const deleteMutation = useDeleteTeam();
   const router = useRouter();
-  const teamSyncQuery = usePublicSettings<boolean>(
-    (settings) => settings.TeamSync
-  );
+  const teamSyncQuery = usePublicSettings<boolean>({
+    select: (settings) => settings.TeamSync,
+  });
 
   const leaderCount = memberships.filter(
     (m) => m.Role === TeamRole.Leader

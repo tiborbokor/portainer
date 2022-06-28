@@ -1,1 +1,1 @@
-export { TeamsView } from './TeamsView';
+export { ListView } from './ListView';

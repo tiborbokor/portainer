@@ -8,7 +8,7 @@ import { useTeams } from '../queries';
 import { CreateTeamForm } from './CreateTeamForm';
 import { TeamsDatatableContainer } from './TeamsDatatable/TeamsDatatable';
 
-export function TeamsView() {
+export function ListView() {
   const { isAdmin } = useUser();
 
   const usersQuery = useUsers(false);

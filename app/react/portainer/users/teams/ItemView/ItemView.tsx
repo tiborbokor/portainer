@@ -23,7 +23,7 @@ import {
 import { Details } from './Details';
 import { TeamAssociationSelector } from './TeamAssociationSelector';
 
-export function TeamView() {
+export function ItemView() {
   const {
     params: { id: teamIdParam },
   } = useCurrentStateAndParams();
@@ -40,9 +40,9 @@ export function TeamView() {
   );
   const usersQuery = useUsers();
   const membershipsQuery = useTeamMemberships(teamId);
-  const teamSyncQuery = usePublicSettings<boolean>(
-    (settings) => settings.TeamSync
-  );
+  const teamSyncQuery = usePublicSettings<boolean>({
+    select: (settings) => settings.TeamSync,
+  });
 
   const addMemberMutation = useAddMemberMutation(teamId);
   const removeMemberMutation = useRemoveMemberMutation(
