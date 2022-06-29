@@ -464,5 +464,5 @@ input:checked + .slider:before {
   position: relative;
   top: 3px;
   margin-right: 5px;
-  color: var(--text-body-color);
+  color: currentColor;
 }

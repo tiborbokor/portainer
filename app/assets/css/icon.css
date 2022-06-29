@@ -1,0 +1,20 @@
+.icon {
+  color: currentColor;
+  margin: 0;
+}
+
+.icon.icon-info {
+  color: var(--ui-blue-8);
+}
+
+.icon.icon-warn {
+  color: var(--ui-yellow-8);
+}
+
+.icon.icon-success {
+  color: var(--ui-green-8);
+}
+
+.icon.icon-error {
+  color: var(--ui-red-8);
+}
