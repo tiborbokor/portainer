@@ -43,7 +43,10 @@ export function KubernetesSidebar({ environmentId }: Props) {
         data-cy="k8sSidebar-namespaces"
       />
 
-      <Authorized authorizations="HelmInstallChart">
+      <Authorized
+        authorizations="HelmInstallChart"
+        environmentId={environmentId}
+      >
         <SidebarItem
           to="kubernetes.templates.helm"
           params={{ endpointId: environmentId }}
@@ -82,7 +85,11 @@ export function KubernetesSidebar({ environmentId }: Props) {
         params={{ endpointId: environmentId }}
         data-cy="k8sSidebar-cluster"
       >
-        <Authorized authorizations="K8sClusterSetupRW" adminOnlyCE>
+        <Authorized
+          authorizations="K8sClusterSetupRW"
+          adminOnlyCE
+          environmentId={environmentId}
+        >
           <SidebarItem
             to="portainer.k8sendpoint.kubernetesConfig"
             params={{ id: environmentId }}
@@ -91,7 +98,11 @@ export function KubernetesSidebar({ environmentId }: Props) {
           />
         </Authorized>
 
-        <Authorized authorizations="K8sClusterSetupRW" adminOnlyCE>
+        <Authorized
+          authorizations="K8sClusterSetupRW"
+          adminOnlyCE
+          environmentId={environmentId}
+        >
           <SidebarItem
             to="portainer.k8sendpoint.securityConstraint"
             params={{ id: environmentId }}
