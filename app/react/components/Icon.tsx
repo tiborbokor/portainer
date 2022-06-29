@@ -32,10 +32,7 @@ export function Icon({ icon, feather, className, mode }: Props) {
     );
   }
 
-  let classes = clsx(className, `icon`);
-  if (mode) {
-    classes = clsx(className, `icon icon-${mode}`);
-  }
+  const classes = clsx(className, 'icon', { [`icon-${mode}`]: mode });
 
   if (feather) {
     return (
