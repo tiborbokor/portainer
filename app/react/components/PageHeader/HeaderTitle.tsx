@@ -10,6 +10,7 @@ import { User, ChevronDown } from 'react-feather';
 import { useSref } from '@uirouter/react';
 
 import { useUser } from '@/portainer/hooks/useUser';
+import { AutomationTestingProps } from '@/types';
 
 import { useHeaderContext } from './HeaderContainer';
 import styles from './HeaderTitle.module.css';
@@ -27,30 +28,46 @@ export function HeaderTitle({ title, children }: PropsWithChildren<Props>) {
       {title}
       <span className="header_title_content">{children}</span>
       <Menu>
-        <MenuButton className={clsx('pull-right', styles.menuButton)}>
+        <MenuButton
+          className={clsx('pull-right', styles.menuButton)}
+          ata-cy="userMenu-button"
+          aria-label="User menu toggle"
+        >
           <User className="icon-nested-gray" />
           {user && <span>{user.Username}</span>}
           <ChevronDown className={styles.arrowDown} />
         </MenuButton>
 
-        <MenuList className={styles.menuList}>
+        <MenuList
+          className={styles.menuList}
+          aria-label="User Menu"
+          data-cy="userMenu"
+        >
           {!window.ddExtension && (
-            <MenuLink to="portainer.account" label="My account" />
+            <MenuLink
+              to="portainer.account"
+              label="My account"
+              data-cy="userMenu-myAccount"
+            />
           )}
 
-          <MenuLink to="portainer.logout" label="Log out" />
+          <MenuLink
+            to="portainer.logout"
+            label="Log out"
+            data-cy="userMenu-logOut"
+          />
         </MenuList>
       </Menu>
     </div>
   );
 }
 
-interface MenuLinkProps {
+interface MenuLinkProps extends AutomationTestingProps {
   to: string;
   label: string;
 }
 
-function MenuLink({ to, label }: MenuLinkProps) {
+function MenuLink({ to, label, 'data-cy': dataCy }: MenuLinkProps) {
   const anchorProps = useSref(to);
 
   return (
@@ -58,6 +75,8 @@ function MenuLink({ to, label }: MenuLinkProps) {
       href={anchorProps.href}
       onClick={anchorProps.onClick}
       className={styles.menuLink}
+      aria-label={label}
+      data-cy={dataCy}
     >
       {label}
     </ReachMenuLink>
