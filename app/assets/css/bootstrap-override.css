@@ -323,6 +323,7 @@ input:checked + .slider:before {
 }
 
 .datatable .toolBarTitle {
+  margin-top: 0;
   margin-left: 10px;
   line-height: 16px;
 }
@@ -337,9 +338,10 @@ input:checked + .slider:before {
   position: relative;
 }
 
-.datatable .toolBarTitle .iconWrapper i {
-  height: 13px;
-  width: 13px;
+.datatable .toolBarTitle .iconWrapper i,
+.datatable .toolBarTitle .iconWrapper svg {
+  height: 16px;
+  width: 16px;
   top: 8px;
   left: 8px;
   align-self: center;
