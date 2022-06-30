@@ -3,18 +3,48 @@
   margin: 0;
 }
 
+.icon.icon-alt {
+  fill: var(--black-color);
+  stroke: var(--white-color);
+}
+
 .icon.icon-info {
   color: var(--ui-blue-8);
+}
+
+.icon.icon-info-alt {
+  fill: var(--ui-blue-8);
+  stroke: var(--white-color);
 }
 
 .icon.icon-warn {
   color: var(--ui-yellow-8);
 }
 
+.icon.icon-warn-alt {
+  fill: var(--ui-yellow-8);
+  stroke: var(--white-color);
+}
+
 .icon.icon-success {
   color: var(--ui-green-8);
 }
 
+.icon.icon-success-alt {
+  fill: var(--ui-green-8);
+  stroke: var(--white-color);
+}
+
 .icon.icon-error {
   color: var(--ui-red-8);
+}
+
+.icon.icon-error-alt {
+  fill: var(--ui-red-8);
+  stroke: var(--white-color);
+}
+
+button .icon {
+  width: 13px;
+  height: 13px;
 }

@@ -12,7 +12,16 @@ interface Props {
   icon: ReactNode | ComponentType<unknown>;
   feather?: boolean;
   className?: string;
-  mode?: 'info' | 'warn' | 'error' | 'success';
+  mode?:
+    | 'alt'
+    | 'info'
+    | 'info-alt'
+    | 'warn'
+    | 'warn-alt'
+    | 'error'
+    | 'error-alt'
+    | 'success'
+    | 'success-alt';
 }
 
 export function Icon({ icon, feather, className, mode }: Props) {
