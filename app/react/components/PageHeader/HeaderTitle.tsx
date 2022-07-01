@@ -7,7 +7,7 @@ import {
 } from '@reach/menu-button';
 import clsx from 'clsx';
 import { User, ChevronDown } from 'react-feather';
-import { useSref } from '@uirouter/react';
+import { UISrefProps, useSref } from '@uirouter/react';
 
 import { useUser } from '@/portainer/hooks/useUser';
 import { AutomationTestingProps } from '@/types';
@@ -30,7 +30,7 @@ export function HeaderTitle({ title, children }: PropsWithChildren<Props>) {
       <Menu>
         <MenuButton
           className={clsx('pull-right', styles.menuButton)}
-          ata-cy="userMenu-button"
+          data-cy="userMenu-button"
           aria-label="User menu toggle"
         >
           <User className="icon-nested-gray" />
@@ -55,6 +55,7 @@ export function HeaderTitle({ title, children }: PropsWithChildren<Props>) {
             to="portainer.logout"
             label="Log out"
             data-cy="userMenu-logOut"
+            params={{ performApiLogout: true }}
           />
         </MenuList>
       </Menu>
@@ -62,13 +63,18 @@ export function HeaderTitle({ title, children }: PropsWithChildren<Props>) {
   );
 }
 
-interface MenuLinkProps extends AutomationTestingProps {
-  to: string;
+interface MenuLinkProps extends AutomationTestingProps, UISrefProps {
   label: string;
 }
 
-function MenuLink({ to, label, 'data-cy': dataCy }: MenuLinkProps) {
-  const anchorProps = useSref(to);
+function MenuLink({
+  to,
+  label,
+  params,
+  options,
+  'data-cy': dataCy,
+}: MenuLinkProps) {
+  const anchorProps = useSref(to, params, options);
 
   return (
     <ReachMenuLink
