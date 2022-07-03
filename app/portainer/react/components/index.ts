@@ -9,6 +9,7 @@ import { TagSelector } from '@@/TagSelector';
 import { Loading } from '@@/Widget/Loading';
 import { PasswordCheckHint } from '@@/PasswordCheckHint';
 import { ViewLoading } from '@@/ViewLoading';
+import { DashboardItem } from '@@/DashboardItem';
 
 import { fileUploadField } from './file-upload-field';
 import { switchField } from './switch-field';
@@ -33,4 +34,8 @@ export const componentsModule = angular
     r2a(PageHeader, ['title', 'breadcrumbs', 'loading', 'onReload', 'reload'])
   )
   .component('prIcon', r2a(Icon, ['className', 'feather', 'icon']))
-  .component('reactQueryDevTools', r2a(ReactQueryDevtoolsWrapper, [])).name;
+  .component('reactQueryDevTools', r2a(ReactQueryDevtoolsWrapper, []))
+  .component(
+    'dashboardItem',
+    r2a(DashboardItem, ['featherIcon', 'icon', 'type', 'value', 'children'])
+  ).name;
